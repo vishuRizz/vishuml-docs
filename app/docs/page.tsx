@@ -167,7 +167,7 @@ print(f"Accuracy: {accuracy:.4f}")`}</code></pre>
                 This is a basic hint Title
               </h3>
               <p className="text-blue-800 dark:text-blue-200">
-                Head over to the <Link href="/docs/quickstart" className="underline hover:no-underline">Desktop Kit Docs</Link> to get the scoop on what's in the download and how to use icons. Also we can add more words.
+                Head over to the <Link href="/docs/quickstart" className="underline hover:no-underline">Desktop Kit Docs</Link> to get the scoop on what is in the download and how to use icons. Also we can add more words.
               </p>
             </div>
           </div>
@@ -181,7 +181,7 @@ print(f"Accuracy: {accuracy:.4f}")`}</code></pre>
                 This is a alarming hint Title
               </h3>
               <p className="text-red-800 dark:text-red-200 mb-3">
-                You can also put all the Lineicons files and folders inside a folder. That way you'll have to add the folder name before the lineicons.css file when linking it.
+                You can also put all the Lineicons files and folders inside a folder. That way you will have to add the folder name before the lineicons.css file when linking it.
               </p>
               <p className="text-red-800 dark:text-red-200">
                 You can also put all the Lineicons files and folders inside a folder.

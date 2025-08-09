@@ -61,7 +61,7 @@ export default function QuickStartPage() {
         </h2>
         
         <p className="mb-4">
-          Let's start with a simple linear regression example:
+          Let us start with a simple linear regression example:
         </p>
 
         <div className="bg-gray-900 rounded-lg p-6 mb-8 relative group">
@@ -98,7 +98,7 @@ print(f"R² Score: {score:.4f}")  # Should be close to 1.0`}</code></pre>
         </h2>
         
         <p className="mb-4">
-          Here's how to use VishuML with real CSV data using pandas (just like sklearn):
+          Here is how to use VishuML with real CSV data using pandas (just like sklearn):
         </p>
 
         <div className="bg-gray-900 rounded-lg p-6 mb-8 relative group">
@@ -148,7 +148,7 @@ for feature, coeff in feature_importance.items():
         </h2>
         
         <p className="mb-4">
-          Let's try a classification task using the built-in iris dataset:
+          Let us try a classification task using the built-in iris dataset:
         </p>
 
         <div className="bg-gray-900 rounded-lg p-6 mb-8 relative group">
@@ -203,7 +203,7 @@ for name, model in models.items():
         </h2>
         
         <p className="mb-4">
-          VishuML also supports unsupervised learning. Here's a K-Means clustering example:
+          VishuML also supports unsupervised learning. Here is a K-Means clustering example:
         </p>
 
         <div className="bg-gray-900 rounded-lg p-6 mb-8 relative group">
