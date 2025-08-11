@@ -1,4 +1,4 @@
-cd "use client";
+"use client";
 
 import Link from "next/link";
 import { ArrowRight, BarChart2, Settings, AlertCircle, LineChart, Brain, Database, Workflow } from "lucide-react";
