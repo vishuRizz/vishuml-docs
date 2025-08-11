@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, Play, BarChart2, Settings, AlertCircle, LineChart } from "lucide-react";
+import { ArrowRight, BarChart2, Settings, AlertCircle, LineChart } from "lucide-react";
 import CodeBlock from "@/app/components/CodeBlock";
 import InfoBox from "@/app/components/InfoBox";
 
@@ -26,7 +26,7 @@ export default function LogisticRegressionVisualizationPage() {
         
         <p className="text-xl text-gray-600 dark:text-gray-300 mb-8">
           VishuML provides powerful visualization tools to help you understand how logistic regression works 
-          and how different parameters affect the model's performance.
+          and how different parameters affect the model&apos;s performance.
         </p>
 
         <InfoBox
@@ -51,7 +51,7 @@ export default function LogisticRegressionVisualizationPage() {
         </h2>
 
         <p className="mb-6">
-          Use the visualize_lr method to create interactive plots showing the model's learning process:
+          Use the visualize_lr method to create interactive plots showing the model&apos;s learning process:
         </p>
 
         <CodeBlock
@@ -104,7 +104,7 @@ viz = model.visualize_lr(
         </h2>
 
         <p className="mb-6">
-          Compare how different learning rates affect the model's convergence:
+          Compare how different learning rates affect the model&apos;s convergence:
         </p>
 
         <CodeBlock

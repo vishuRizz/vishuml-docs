@@ -81,9 +81,9 @@ print(f"R² Score: {comparison.best_score:.4f}")`;
                   <span className="text-blue-400">from</span> <span className="text-white">vishuml.utils</span> <span className="text-blue-400">import</span> <span className="text-white">train_test_split</span>{'\n\n'}
 
                   <span className="text-green-400"># Load your data</span>{'\n'}
-                  <span className="text-white">df = pd.read_csv(</span><span className="text-yellow-300">'your_data.csv'</span><span className="text-white">)</span>{'\n'}
-                  <span className="text-white">X = df[[</span><span className="text-yellow-300">'feature1'</span><span className="text-white">, </span><span className="text-yellow-300">'feature2'</span><span className="text-white">, </span><span className="text-yellow-300">'feature3'</span><span className="text-white">]]</span>{'\n'}
-                  <span className="text-white">y = df[</span><span className="text-yellow-300">'target'</span><span className="text-white">]</span>{'\n\n'}
+                  <span className="text-white">df = pd.read_csv(</span><span className="text-yellow-300">&apos;your_data.csv&apos;</span><span className="text-white">)</span>{'\n'}
+                  <span className="text-white">X = df[[</span><span className="text-yellow-300">&apos;feature1&apos;</span><span className="text-white">, </span><span className="text-yellow-300">&apos;feature2&apos;</span><span className="text-white">, </span><span className="text-yellow-300">&apos;feature3&apos;</span><span className="text-white">]]</span>{'\n'}
+                  <span className="text-white">y = df[</span><span className="text-yellow-300">&apos;target&apos;</span><span className="text-white">]</span>{'\n\n'}
 
                   <span className="text-green-400"># Split data</span>{'\n'}
                   <span className="text-white">X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=</span><span className="text-purple-400">0.2</span><span className="text-white">)</span>{'\n\n'}
@@ -98,12 +98,12 @@ print(f"R² Score: {comparison.best_score:.4f}")`;
                   <span className="text-green-400"># Compare with other algorithms automatically</span>{'\n'}
                   <span className="text-white">comparison = compare_algorithms(</span>{'\n'}
                   <span className="text-white">    X_train, y_train, X_test, y_test,</span>{'\n'}
-                  <span className="text-white">    algorithms=[</span><span className="text-yellow-300">'LinearRegression'</span><span className="text-white">, </span><span className="text-yellow-300">'RandomForest'</span><span className="text-white">, </span><span className="text-yellow-300">'SVM'</span><span className="text-white">],</span>{'\n'}
+                  <span className="text-white">    algorithms=[</span><span className="text-yellow-300">&apos;LinearRegression&apos;</span><span className="text-white">, </span><span className="text-yellow-300">&apos;RandomForest&apos;</span><span className="text-white">, </span><span className="text-yellow-300">&apos;SVM&apos;</span><span className="text-white">],</span>{'\n'}
                   <span className="text-white">    plot_results=</span><span className="text-purple-400">True</span>  <span className="text-green-400"># Automatic comparison charts</span>{'\n'}
                   <span className="text-white">)</span>{'\n\n'}
 
-                  <span className="text-blue-400">print</span><span className="text-white">(</span><span className="text-yellow-300">f"Best Algorithm: </span><span className="text-white">comparison.best_model</span><span className="text-yellow-300">"</span><span className="text-white">)</span>{'\n'}
-                  <span className="text-blue-400">print</span><span className="text-white">(</span><span className="text-yellow-300">f"R² Score: </span><span className="text-white">comparison.best_score:.4f</span><span className="text-yellow-300">"</span><span className="text-white">)</span>
+                  <span className="text-blue-400">print</span><span className="text-white">(</span><span className="text-yellow-300">f&quot;Best Algorithm: </span><span className="text-white">comparison.best_model</span><span className="text-yellow-300">&quot;</span><span className="text-white">)</span>{'\n'}
+                  <span className="text-blue-400">print</span><span className="text-white">(</span><span className="text-yellow-300">f&quot;R² Score: </span><span className="text-white">comparison.best_score:.4f</span><span className="text-yellow-300">&quot;</span><span className="text-white">)</span>
                 </code>
               </pre>
             </div>

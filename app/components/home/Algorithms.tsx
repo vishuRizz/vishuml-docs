@@ -127,7 +127,7 @@ const Algorithms = () => {
           <div className="bg-white rounded-2xl p-8 border-2 border-dashed border-gray-300">
             <h3 className="text-2xl font-semibold text-black mb-4">More Algorithms Coming Soon</h3>
             <p className="text-gray-600 mb-6">
-              We're continuously adding new algorithms and features. Next up: Transformer models, 
+              We&apos;re continuously adding new algorithms and features. Next up: Transformer models, 
               Advanced ensemble methods, and Reinforcement learning algorithms.
             </p>
             <div className="flex justify-center">

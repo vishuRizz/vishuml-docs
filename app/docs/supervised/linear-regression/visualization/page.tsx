@@ -1,6 +1,6 @@
 "use client"
 import Link from "next/link";
-import { ArrowRight, Play, BarChart2, Settings, AlertCircle, LineChart } from "lucide-react";
+import { ArrowRight, BarChart2, Settings, AlertCircle, LineChart } from "lucide-react";
 import CodeBlock from "@/app/components/CodeBlock";
 import InfoBox from "@/app/components/InfoBox";
 
@@ -25,7 +25,7 @@ export default function LinearRegressionVisualizationPage() {
         
         <p className="text-xl text-gray-600 dark:text-gray-300 mb-8">
           VishuML provides powerful visualization tools to help you understand how linear regression works 
-          and how different parameters affect the model's performance.
+          and how different parameters affect the model&apos;s performance.
         </p>
 
         <InfoBox
@@ -50,7 +50,7 @@ export default function LinearRegressionVisualizationPage() {
         </h2>
 
         <p className="mb-6">
-          Use the visualize_lr method to create interactive plots showing the model's learning process:
+          Use the visualize_lr method to create interactive plots showing the model&apos;s learning process:
         </p>
 
         <CodeBlock
@@ -96,7 +96,7 @@ viz = model.visualize_lr(X, y, animation_interval=200)
         </h2>
 
         <p className="mb-6">
-          Compare how different learning rates affect the model's convergence:
+          Compare how different learning rates affect the model&apos;s convergence:
         </p>
 
         <CodeBlock
@@ -186,7 +186,7 @@ axes['equation'].text.set_fontsize(14)`}
             <div>
               <h4 className="font-medium mb-2">Style Options</h4>
               <ul className="space-y-1">
-                <li>• style: Seaborn plot style ('whitegrid', 'darkgrid', etc.)</li>
+                <li>• style: Seaborn plot style (&apos;whitegrid&apos;, &apos;darkgrid&apos;, etc.)</li>
                 <li>• palette: Color palette for plots</li>
                 <li>• figsize: Figure size as (width, height) tuple</li>
               </ul>
@@ -233,7 +233,7 @@ viz = model.visualize_lr(X_multi, y_multi)
           <p>
             When visualizing models with multiple features, the scatter plot shows the relationship 
             between the first feature (X₁) and the target, while the equation displays coefficients 
-            for all features. This provides a simplified view of the model's behavior while still 
+            for all features. This provides a simplified view of the model&apos;s behavior while still 
             showing the complete model parameters.
           </p>
         </InfoBox>

@@ -224,7 +224,7 @@ export default function SearchBox({ isOpen, onClose }: SearchBoxProps) {
             </div>
           ) : query.trim() !== '' ? (
             <div className="p-4 text-center text-gray-500 dark:text-gray-400">
-              No results found for "{query}"
+              No results found for &quot;{query}&quot;
             </div>
           ) : null}
         </div>

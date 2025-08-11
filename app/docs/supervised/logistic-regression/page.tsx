@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, BarChart3, Settings, AlertCircle, LineChart, Play, Zap, Brain } from "lucide-react";
+import { ArrowRight, BarChart3, Settings, AlertCircle, LineChart, Zap, Brain } from "lucide-react";
 import CodeBlock from "@/app/components/CodeBlock";
 import InfoBox from "@/app/components/InfoBox";
 
@@ -24,7 +24,7 @@ export default function LogisticRegressionPage() {
         
         <p className="text-xl text-gray-600 dark:text-gray-300 mb-8">
           Logistic regression is a fundamental classification algorithm that uses the logistic function 
-          to model the probability of binary outcomes. VishuML's implementation includes advanced features 
+          to model the probability of binary outcomes. VishuML&apos;s implementation includes advanced features 
           like visualization, model comparison, and enhanced training capabilities.
         </p>
 
@@ -422,7 +422,7 @@ for param, value in params.items():
               visualize_lr(X, y, **kwargs)
             </h3>
             <p className="text-gray-600 dark:text-gray-400 mb-4">
-              Create interactive visualizations of the model's learning process.
+              Create interactive visualizations of the model&apos;s learning process.
             </p>
             <div className="bg-gray-50 dark:bg-gray-700 rounded p-3">
               <strong>Parameters:</strong><br />
