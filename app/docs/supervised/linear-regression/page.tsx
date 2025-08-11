@@ -1,5 +1,8 @@
+"use client"
 import Link from "next/link";
-import { ArrowRight, Copy, BarChart3, Settings, AlertCircle } from "lucide-react";
+import { ArrowRight, BarChart3, Settings, AlertCircle, LineChart, Play } from "lucide-react";
+import CodeBlock from "@/app/components/CodeBlock";
+import InfoBox from "@/app/components/InfoBox";
 
 export default function LinearRegressionPage() {
   return (
@@ -24,27 +27,45 @@ export default function LinearRegressionPage() {
         </p>
 
         {/* Overview */}
-        <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-6 mb-8">
-          <div className="flex items-start">
-            <BarChart3 className="h-5 w-5 text-blue-600 dark:text-blue-400 mt-0.5 mr-3 flex-shrink-0" />
-            <div>
-              <h3 className="text-lg font-medium text-blue-900 dark:text-blue-100 mb-2">
-                When to use Linear Regression
-              </h3>
-              <ul className="text-blue-800 dark:text-blue-200 space-y-1">
-                <li>• Predicting continuous target values</li>
-                <li>• Understanding linear relationships between features and target</li>
-                <li>• When you need interpretable coefficients</li>
-                <li>• As a baseline model for regression tasks</li>
-              </ul>
-            </div>
-          </div>
+        <section id="overview">
+          <div className="grid md:grid-cols-2 gap-6 mb-8">
+          <InfoBox
+            type="info"
+            title="When to use Linear Regression"
+            icon={BarChart3}
+          >
+            <ul className="space-y-1">
+              <li>• Predicting continuous target values</li>
+              <li>• Understanding linear relationships between features and target</li>
+              <li>• When you need interpretable coefficients</li>
+              <li>• As a baseline model for regression tasks</li>
+            </ul>
+          </InfoBox>
+
+          <InfoBox
+            type="success"
+            title="Interactive Visualization"
+            icon={LineChart}
+          >
+            <p className="mb-3">
+              VishuML provides powerful visualization tools to help you understand the learning process.
+            </p>
+            <Link 
+              href="/docs/supervised/linear-regression/visualization"
+              className="inline-flex items-center text-green-700 dark:text-green-300 hover:underline"
+            >
+              <Play className="h-4 w-4 mr-1" />
+              View Visualization Guide
+            </Link>
+          </InfoBox>
         </div>
+        </section>
 
         {/* Mathematical Background */}
-        <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4 mt-12">
-          Mathematical Background
-        </h2>
+        <section id="mathematical-background">
+          <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4 mt-12">
+            Mathematical Background
+          </h2>
         
         <p className="mb-6">
           Linear regression assumes a linear relationship between the input features X and the target y:
@@ -69,19 +90,22 @@ export default function LinearRegressionPage() {
         <p className="mb-8">
           The goal is to find the coefficients that minimize the sum of squared residuals (ordinary least squares).
         </p>
+        </section>
 
         {/* API Reference */}
-        <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4 mt-12">
-          API Reference
-        </h2>
+        <section id="api-reference">
+          <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4 mt-12">
+            API Reference
+          </h2>
 
         <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6 mb-8">
           <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
             class LinearRegression
           </h3>
           
-          <div className="bg-gray-900 rounded-lg p-4 mb-4">
-            <pre className="text-sm text-gray-300"><code>{`LinearRegression(
+          <CodeBlock
+            title="LinearRegression Class"
+            code={`LinearRegression(
     fit_intercept=True,
     use_gradient_descent=False,
     learning_rate=0.01,
@@ -89,8 +113,8 @@ export default function LinearRegressionPage() {
     tolerance=1e-8,
     normalize=True,
     patience=5
-)`}</code></pre>
-          </div>
+)`}
+          />
 
           <h4 className="font-medium text-gray-900 dark:text-white mb-3">Parameters</h4>
           <div className="space-y-4 text-sm">
@@ -112,18 +136,18 @@ export default function LinearRegressionPage() {
             </div>
           </div>
         </div>
+        </section>
 
         {/* Basic Usage */}
-        <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4 mt-12">
-          Basic Usage
-        </h2>
+        <section id="basic-usage">
+          <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4 mt-12">
+            Basic Usage
+          </h2>
 
         <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-3">Simple Example</h3>
-        <div className="bg-gray-900 rounded-lg p-4 mb-6 relative group">
-          <button className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors opacity-0 group-hover:opacity-100">
-            <Copy className="h-4 w-4" />
-          </button>
-          <pre className="text-sm text-gray-300 overflow-x-auto"><code>{`import numpy as np
+        <CodeBlock
+          title="Simple Example"
+          code={`import numpy as np
 from vishuml import LinearRegression
 from vishuml.utils import train_test_split, r2_score
 
@@ -147,15 +171,13 @@ y_pred = model.predict(X_test)
 r2 = model.score(X_test, y_test)
 print(f"R² Score: {r2:.4f}")
 print(f"Coefficients: {model.weights}")
-print(f"Intercept: {model.intercept:.4f}")`}</code></pre>
-        </div>
+print(f"Intercept: {model.intercept:.4f}")`}
+        />
 
         <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-3">Using pandas DataFrames</h3>
-        <div className="bg-gray-900 rounded-lg p-4 mb-6 relative group">
-          <button className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors opacity-0 group-hover:opacity-100">
-            <Copy className="h-4 w-4" />
-          </button>
-          <pre className="text-sm text-gray-300 overflow-x-auto"><code>{`import pandas as pd
+        <CodeBlock
+          title="Using pandas DataFrames"
+          code={`import pandas as pd
 from vishuml import LinearRegression
 from vishuml.utils import train_test_split
 
@@ -179,20 +201,20 @@ print(f"Model R² Score: {score:.4f}")
 feature_importance = dict(zip(X.columns, model.weights))
 print("Feature Importance:")
 for feature, coeff in feature_importance.items():
-    print(f"  {feature}: {coeff:.4f}")`}</code></pre>
-        </div>
+    print(f"  {feature}: {coeff:.4f}")`}
+        />
+        </section>
 
         {/* Advanced Usage */}
-        <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4 mt-12">
-          Advanced Usage
-        </h2>
+        <section id="advanced-usage">
+          <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4 mt-12">
+            Advanced Usage
+          </h2>
 
         <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-3">Gradient Descent vs Normal Equation</h3>
-        <div className="bg-gray-900 rounded-lg p-4 mb-6 relative group">
-          <button className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors opacity-0 group-hover:opacity-100">
-            <Copy className="h-4 w-4" />
-          </button>
-          <pre className="text-sm text-gray-300 overflow-x-auto"><code>{`from vishuml.linear_regression import compare_methods
+        <CodeBlock
+          title="Gradient Descent vs Normal Equation"
+          code={`from vishuml.linear_regression import compare_methods
 
 # Compare both methods
 results = compare_methods(
@@ -203,15 +225,13 @@ results = compare_methods(
     return_report=True
 )
 
-print(results)  # Detailed comparison report`}</code></pre>
-        </div>
+print(results)  # Detailed comparison report`}
+        />
 
         <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-3">Custom Training Parameters</h3>
-        <div className="bg-gray-900 rounded-lg p-4 mb-8 relative group">
-          <button className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors opacity-0 group-hover:opacity-100">
-            <Copy className="h-4 w-4" />
-          </button>
-          <pre className="text-sm text-gray-300 overflow-x-auto"><code>{`# Using gradient descent with custom parameters
+        <CodeBlock
+          title="Custom Training Parameters"
+          code={`# Using gradient descent with custom parameters
 model_gd = LinearRegression(
     use_gradient_descent=True,
     learning_rate=0.01,
@@ -226,13 +246,15 @@ model_gd.fit(X_train, y_train)
 # Check convergence
 print(f"Converged: {model_gd._converged}")
 print(f"Effective learning rate: {model_gd._effective_learning_rate}")
-print(f"Training iterations: {len(model_gd._fit_history)}")`}</code></pre>
-        </div>
+print(f"Training iterations: {len(model_gd._fit_history)}")`}
+        />
+        </section>
 
         {/* Methods */}
-        <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4 mt-12">
-          Methods
-        </h2>
+        <section id="methods">
+          <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4 mt-12">
+            Methods
+          </h2>
 
         <div className="space-y-6 mb-8">
           <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6">
@@ -279,47 +301,42 @@ print(f"Training iterations: {len(model_gd._fit_history)}")`}</code></pre>
             </div>
           </div>
         </div>
+        </section>
 
         {/* Tips and Warnings */}
-        <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4 mt-12">
-          Tips & Best Practices
-        </h2>
+        <section id="best-practices">
+          <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4 mt-12">
+            Tips & Best Practices
+          </h2>
 
         <div className="space-y-6 mb-8">
-          <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-6">
-            <div className="flex items-start">
-              <Settings className="h-5 w-5 text-green-600 dark:text-green-400 mt-0.5 mr-3 flex-shrink-0" />
-              <div>
-                <h3 className="text-lg font-medium text-green-900 dark:text-green-100 mb-2">
-                  Performance Tips
-                </h3>
-                <ul className="text-green-800 dark:text-green-200 space-y-1">
-                  <li>• Use normal equation (default) for small datasets (&lt; 10,000 samples)</li>
-                  <li>• Use gradient descent for large datasets or when memory is limited</li>
-                  <li>• Feature scaling improves gradient descent convergence</li>
-                  <li>• Check for multicollinearity in your features</li>
-                </ul>
-              </div>
-            </div>
-          </div>
+          <InfoBox
+            type="success"
+            title="Performance Tips"
+            icon={Settings}
+          >
+            <ul className="space-y-1">
+              <li>• Use normal equation (default) for small datasets (&lt; 10,000 samples)</li>
+              <li>• Use gradient descent for large datasets or when memory is limited</li>
+              <li>• Feature scaling improves gradient descent convergence</li>
+              <li>• Check for multicollinearity in your features</li>
+            </ul>
+          </InfoBox>
 
-          <div className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-6">
-            <div className="flex items-start">
-              <AlertCircle className="h-5 w-5 text-yellow-600 dark:text-yellow-400 mt-0.5 mr-3 flex-shrink-0" />
-              <div>
-                <h3 className="text-lg font-medium text-yellow-900 dark:text-yellow-100 mb-2">
-                  Common Issues
-                </h3>
-                <ul className="text-yellow-800 dark:text-yellow-200 space-y-1">
-                  <li>• Linear regression assumes linear relationships - check with scatter plots</li>
-                  <li>• Outliers can significantly affect results</li>
-                  <li>• High multicollinearity can make coefficients unstable</li>
-                  <li>• Feature scaling is important for gradient descent</li>
-                </ul>
-              </div>
-            </div>
-          </div>
+          <InfoBox
+            type="warning"
+            title="Common Issues"
+            icon={AlertCircle}
+          >
+            <ul className="space-y-1">
+              <li>• Linear regression assumes linear relationships - check with scatter plots</li>
+              <li>• Outliers can significantly affect results</li>
+              <li>• High multicollinearity can make coefficients unstable</li>
+              <li>• Feature scaling is important for gradient descent</li>
+            </ul>
+          </InfoBox>
         </div>
+        </section>
 
         {/* Navigation */}
         <div className="flex justify-between items-center mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">

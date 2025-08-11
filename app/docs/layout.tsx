@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { 
@@ -12,135 +12,267 @@ import {
   FileText,
   Menu,
   X,
-  Search
+  Search,
+  BarChart2,
+  Brain,
+  GitBranch,
+  Database,
+  LineChart,
+  Network,
+  Workflow,
+  Settings,
+  Box
 } from "lucide-react";
+import ScrollSpyNav from "@/app/components/ScrollSpyNav";
+import SearchBox from "@/app/components/SearchBox";
 
 const navigation = [
   {
     title: "Introduction",
     icon: BookOpen,
     items: [
-      { title: "Getting Started", href: "/docs" },
-      { title: "Installation", href: "/docs/installation" },
-      { title: "Quick Start", href: "/docs/quickstart" },
+      { 
+        title: "Getting Started",
+        href: "/docs",
+        sections: [
+          { id: "overview", title: "Overview" },
+          { id: "features", title: "Features" },
+          { id: "installation", title: "Installation" },
+          { id: "quick-start", title: "Quick Start" }
+        ]
+      },
+      { 
+        title: "Installation",
+        href: "/docs/installation",
+        sections: [
+          { id: "requirements", title: "Requirements" },
+          { id: "pip-install", title: "PyPI Installation" },
+          { id: "source-install", title: "Source Installation" },
+          { id: "development", title: "Development Setup" }
+        ]
+      },
+      { 
+        title: "Quick Start",
+        href: "/docs/quickstart",
+        sections: [
+          { id: "basic-example", title: "Basic Example" },
+          { id: "pandas-usage", title: "Using with pandas" },
+          { id: "real-data", title: "Real Dataset Example" },
+          { id: "next-steps", title: "Next Steps" }
+        ]
+      }
     ]
   },
   {
     title: "Supervised Learning",
-    icon: Layers,
+    icon: Brain,
     items: [
-      { title: "Linear Regression", href: "/docs/supervised/linear-regression" },
-      { title: "Logistic Regression", href: "/docs/supervised/logistic-regression" },
-      { title: "K-Nearest Neighbors", href: "/docs/supervised/knn" },
-      { title: "Support Vector Machine", href: "/docs/supervised/svm" },
-      { title: "Decision Tree", href: "/docs/supervised/decision-tree" },
-      { title: "Naive Bayes", href: "/docs/supervised/naive-bayes" },
-      { title: "Perceptron", href: "/docs/supervised/perceptron" },
+      {
+        title: "Linear Regression",
+        href: "/docs/supervised/linear-regression",
+        sections: [
+          { id: "overview", title: "Overview" },
+          { id: "mathematical-background", title: "Mathematical Background" },
+          { id: "api-reference", title: "API Reference" },
+          { id: "basic-usage", title: "Basic Usage" },
+          { id: "advanced-usage", title: "Advanced Usage" },
+          { id: "methods", title: "Methods" },
+          { id: "best-practices", title: "Best Practices" }
+        ]
+      },
+      {
+        title: "Logistic Regression",
+        href: "/docs/supervised/logistic-regression",
+        sections: [
+          { id: "overview", title: "Overview" },
+          { id: "mathematical-background", title: "Mathematical Background" },
+          { id: "api-reference", title: "API Reference" },
+          { id: "basic-usage", title: "Basic Usage" },
+          { id: "advanced-usage", title: "Advanced Usage" },
+          { id: "methods", title: "Methods" },
+          { id: "tips-best-practices", title: "Tips & Best Practices" }
+        ]
+      },
+      {
+        title: "K-Nearest Neighbors",
+        href: "/docs/supervised/knn",
+        sections: [
+          { id: "overview", title: "Overview" },
+          { id: "algorithm", title: "Algorithm Details" },
+          { id: "api-reference", title: "API Reference" },
+          { id: "classification", title: "Classification" },
+          { id: "regression", title: "Regression" },
+          { id: "distance-metrics", title: "Distance Metrics" }
+        ]
+      },
+      {
+        title: "Support Vector Machine",
+        href: "/docs/supervised/svm",
+        sections: [
+          { id: "overview", title: "Overview" },
+          { id: "mathematical-background", title: "Mathematical Background" },
+          { id: "kernels", title: "Kernel Functions" },
+          { id: "api-reference", title: "API Reference" },
+          { id: "basic-usage", title: "Basic Usage" },
+          { id: "visualization", title: "Visualization" }
+        ]
+      },
+      {
+        title: "Decision Tree",
+        href: "/docs/supervised/decision-tree",
+        sections: [
+          { id: "overview", title: "Overview" },
+          { id: "cart-algorithm", title: "CART Algorithm" },
+          { id: "api-reference", title: "API Reference" },
+          { id: "basic-usage", title: "Basic Usage" },
+          { id: "visualization", title: "Tree Visualization" }
+        ]
+      },
+      {
+        title: "Naive Bayes",
+        href: "/docs/supervised/naive-bayes",
+        sections: [
+          { id: "overview", title: "Overview" },
+          { id: "gaussian-nb", title: "Gaussian Naive Bayes" },
+          { id: "api-reference", title: "API Reference" },
+          { id: "basic-usage", title: "Basic Usage" },
+          { id: "text-classification", title: "Text Classification" }
+        ]
+      },
+      {
+        title: "Perceptron",
+        href: "/docs/supervised/perceptron",
+        sections: [
+          { id: "overview", title: "Overview" },
+          { id: "algorithm", title: "Algorithm Details" },
+          { id: "api-reference", title: "API Reference" },
+          { id: "basic-usage", title: "Basic Usage" },
+          { id: "visualization", title: "Visualization" }
+        ]
+      }
     ]
   },
   {
     title: "Unsupervised Learning",
-    icon: Code,
+    icon: Network,
     items: [
-      { title: "K-Means Clustering", href: "/docs/unsupervised/kmeans" },
+      {
+        title: "K-Means Clustering",
+        href: "/docs/unsupervised/kmeans",
+        sections: [
+          { id: "overview", title: "Overview" },
+          { id: "algorithm", title: "Algorithm Details" },
+          { id: "initialization", title: "Initialization Methods" },
+          { id: "api-reference", title: "API Reference" },
+          { id: "basic-usage", title: "Basic Usage" },
+          { id: "visualization", title: "Visualization" }
+        ]
+      }
     ]
   },
   {
     title: "Utilities",
-    icon: FileText,
+    icon: Settings,
     items: [
-      { title: "Data Splitting", href: "/docs/utils/data-splitting" },
-      { title: "Metrics", href: "/docs/utils/metrics" },
-      { title: "Preprocessing", href: "/docs/utils/preprocessing" },
-      { title: "Distance Functions", href: "/docs/utils/distances" },
+      {
+        title: "Data Splitting",
+        href: "/docs/utils/data-splitting",
+        sections: [
+          { id: "train-test-split", title: "Train Test Split" },
+          { id: "cross-validation", title: "Cross Validation" },
+          { id: "stratified-split", title: "Stratified Split" }
+        ]
+      },
+      {
+        title: "Metrics",
+        href: "/docs/utils/metrics",
+        sections: [
+          { id: "classification-metrics", title: "Classification Metrics" },
+          { id: "regression-metrics", title: "Regression Metrics" },
+          { id: "clustering-metrics", title: "Clustering Metrics" }
+        ]
+      },
+      {
+        title: "Preprocessing",
+        href: "/docs/utils/preprocessing",
+        sections: [
+          { id: "normalization", title: "Normalization" },
+          { id: "standardization", title: "Standardization" },
+          { id: "encoding", title: "Categorical Encoding" }
+        ]
+      },
+      {
+        title: "Distance Functions",
+        href: "/docs/utils/distances",
+        sections: [
+          { id: "euclidean", title: "Euclidean Distance" },
+          { id: "manhattan", title: "Manhattan Distance" },
+          { id: "cosine", title: "Cosine Similarity" }
+        ]
+      }
     ]
   },
   {
     title: "Examples",
     icon: Code,
     items: [
-      { title: "Basic Usage", href: "/docs/examples/basic" },
-      { title: "Real Datasets", href: "/docs/examples/datasets" },
-      { title: "Comparison Guide", href: "/docs/examples/comparison" },
-      { title: "Performance Tips", href: "/docs/examples/performance" },
+      {
+        title: "Basic Usage",
+        href: "/docs/examples/basic",
+        sections: [
+          { id: "regression", title: "Regression Examples" },
+          { id: "classification", title: "Classification Examples" },
+          { id: "clustering", title: "Clustering Examples" }
+        ]
+      },
+      {
+        title: "Real Datasets",
+        href: "/docs/examples/datasets",
+        sections: [
+          { id: "iris", title: "Iris Dataset" },
+          { id: "housing", title: "Housing Dataset" },
+          { id: "wine", title: "Wine Dataset" }
+        ]
+      },
+      {
+        title: "Comparison Guide",
+        href: "/docs/examples/comparison",
+        sections: [
+          { id: "regression-comparison", title: "Regression Models" },
+          { id: "classification-comparison", title: "Classification Models" },
+          { id: "performance", title: "Performance Comparison" }
+        ]
+      }
     ]
   }
 ];
-
-interface SidebarItemProps {
-  item: typeof navigation[0];
-  isExpanded: boolean;
-  onToggle: () => void;
-  currentPath: string;
-}
-
-function SidebarItem({ item, isExpanded, onToggle, currentPath }: SidebarItemProps) {
-  const Icon = item.icon;
-  
-  return (
-    <div className="mb-1">
-      <button
-        onClick={onToggle}
-        className="w-full flex items-center justify-between p-2 text-left text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
-      >
-        <div className="flex items-center">
-          <Icon className="w-4 h-4 mr-2" />
-          {item.title}
-        </div>
-        {isExpanded ? (
-          <ChevronDown className="w-4 h-4" />
-        ) : (
-          <ChevronRight className="w-4 h-4" />
-        )}
-      </button>
-      
-      {isExpanded && (
-        <div className="ml-6 mt-1 space-y-1">
-          {item.items.map((subItem) => (
-            <Link
-              key={subItem.href}
-              href={subItem.href}
-              className={`block px-3 py-2 text-sm rounded-lg transition-colors ${
-                currentPath === subItem.href
-                  ? "bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 font-medium"
-                  : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800"
-              }`}
-            >
-              {subItem.title}
-            </Link>
-          ))}
-        </div>
-      )}
-    </div>
-  );
-}
 
 export default function DocsLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const [expandedItems, setExpandedItems] = useState<Record<string, boolean>>({
-    "Introduction": true,
-    "Supervised Learning": false,
-    "Unsupervised Learning": false,
-    "Utilities": false,
-    "Examples": false,
-  });
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const pathname = usePathname();
 
-  const toggleItem = (title: string) => {
-    setExpandedItems(prev => ({
-      ...prev,
-      [title]: !prev[title]
-    }));
-  };
+  // Keyboard shortcut for search
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        setSearchOpen(true);
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Header */}
-      <header className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 sticky top-0 z-40">
+      <header className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 fixed top-0 left-0 right-0 z-40 lg:left-64">
         <div className="px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             {/* Left side */}
@@ -171,17 +303,24 @@ export default function DocsLayout({
 
             {/* Right side */}
             <div className="flex items-center space-x-4">
-              <div className="relative hidden md:block">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-                <input
-                  type="text"
-                  placeholder="Search docs..."
-                  className="pl-10 pr-4 py-2 w-64 text-sm border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-              </div>
+              <button
+                onClick={() => setSearchOpen(true)}
+                className="relative hidden md:flex items-center w-64 px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-500 dark:text-gray-400 hover:border-gray-400 dark:hover:border-gray-500 transition-colors"
+              >
+                <Search className="h-4 w-4 mr-2" />
+                <span>Search docs...</span>
+                <span className="ml-auto text-xs bg-gray-100 dark:bg-gray-600 px-2 py-1 rounded">⌘K</span>
+              </button>
+              
+              <button
+                onClick={() => setSearchOpen(true)}
+                className="md:hidden p-2 text-gray-400 hover:text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+              >
+                <Search className="h-5 w-5" />
+              </button>
               
               <a
-                href="https://github.com/vishuRizz/vishuml"
+                href="https://github.com/vishuRizz/vishuml-pip-library"
                 className="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
@@ -196,21 +335,11 @@ export default function DocsLayout({
       <div className="flex">
         {/* Sidebar */}
         <aside className={`
-          fixed lg:static inset-y-0 left-0 z-30 w-64 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 transform transition-transform duration-300 ease-in-out lg:transform-none
+          fixed lg:fixed inset-y-0 left-0 z-30 w-64 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 transform transition-transform duration-300 ease-in-out lg:transform-none
           ${sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
         `}>
-          <div className="p-4 pt-20 lg:pt-4 h-full overflow-y-auto">
-            <nav className="space-y-2">
-              {navigation.map((item) => (
-                <SidebarItem
-                  key={item.title}
-                  item={item}
-                  isExpanded={expandedItems[item.title]}
-                  onToggle={() => toggleItem(item.title)}
-                  currentPath={pathname}
-                />
-              ))}
-            </nav>
+          <div className="p-4 pt-20 lg:pt-4 h-full flex flex-col">
+            <ScrollSpyNav items={navigation} />
           </div>
         </aside>
 
@@ -223,12 +352,15 @@ export default function DocsLayout({
         )}
 
         {/* Main content */}
-        <main className="flex-1 lg:pl-4 max-w-none">
-          <div className="px-4 sm:px-6 lg:px-8 py-8">
+        <main className="flex-1 lg:pl-64 max-w-none">
+          <div className="px-4 sm:px-6 lg:px-8 py-8 pt-24">
             {children}
           </div>
         </main>
       </div>
+
+      {/* Search Modal */}
+      <SearchBox isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
     </div>
   );
 }
