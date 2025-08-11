@@ -60,9 +60,10 @@ export default function ScrollSpyNav({ items }: ScrollSpyNavProps) {
     );
     
     if (currentSection && !expandedSections.has(currentSection.title)) {
-      setExpandedSections(prev => new Set([...prev, currentSection.title]));
+      // Close all sections and open only the current one
+      setExpandedSections(new Set([currentSection.title]));
     }
-  }, [pathname, items, expandedSections]);
+  }, [pathname, items]);
 
   const renderNavItems = (items: NavItem[]) => {
     return items.map((item, index) => {
@@ -72,42 +73,46 @@ export default function ScrollSpyNav({ items }: ScrollSpyNavProps) {
       const isExpanded = expandedSections.has(item.title);
 
       return (
-        <div key={index} className="mb-2">
+        <div key={index} className="mb-3">
           {item.href ? (
-            <Link
-              href={item.href}
-              className={`flex items-center py-1.5 px-2 rounded-md transition-colors text-sm ${
-                isCurrentPage
-                  ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300'
-                  : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
-              }`}
-            >
-              {Icon && <Icon className="w-3 h-3 mr-2" />}
-              {item.title}
-            </Link>
+                          <Link
+                href={item.href}
+                className={`flex items-center py-2 px-3 rounded-md transition-colors text-sm ${
+                  isCurrentPage
+                    ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300'
+                    : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
+                }`}
+              >
+                {Icon && <Icon className="w-4 h-4 mr-2" />}
+                {item.title}
+              </Link>
           ) : (
-            <div className="flex items-center justify-between py-1.5 px-2 text-sm font-medium text-gray-900 dark:text-white">
+            <div className="flex items-center justify-between py-2 px-3 text-sm font-medium text-gray-900 dark:text-white">
               <div className="flex items-center">
-                {Icon && <Icon className="w-3 h-3 mr-2" />}
+                {Icon && <Icon className="w-4 h-4 mr-2" />}
                 {item.title}
               </div>
               {item.items && (
                 <button
                   onClick={() => {
-                    const newExpanded = new Set(expandedSections);
                     if (isExpanded) {
-                      newExpanded.delete(item.title);
+                      // Close this section
+                      setExpandedSections(prev => {
+                        const newExpanded = new Set(prev);
+                        newExpanded.delete(item.title);
+                        return newExpanded;
+                      });
                     } else {
-                      newExpanded.add(item.title);
+                      // Close all other sections and open this one
+                      setExpandedSections(new Set([item.title]));
                     }
-                    setExpandedSections(newExpanded);
                   }}
                   className="p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded"
                 >
                   {isExpanded ? (
-                    <ChevronDown className="w-3 h-3" />
+                    <ChevronDown className="w-4 h-4" />
                   ) : (
-                    <ChevronRight className="w-3 h-3" />
+                    <ChevronRight className="w-4 h-4" />
                   )}
                 </button>
               )}
@@ -115,7 +120,7 @@ export default function ScrollSpyNav({ items }: ScrollSpyNavProps) {
           )}
 
           {isCurrentPage && item.sections && (
-            <div className="ml-4 mt-1 space-y-0.5 border-l border-gray-200 dark:border-gray-700">
+            <div className="ml-4 mt-1 space-y-1 border-l border-gray-200 dark:border-gray-700">
               {item.sections.map((section) => (
                 <a
                   key={section.id}
@@ -130,7 +135,7 @@ export default function ScrollSpyNav({ items }: ScrollSpyNavProps) {
                       });
                     }
                   }}
-                  className={`block pl-3 py-0.5 text-xs transition-colors cursor-pointer ${
+                  className={`block pl-3 py-1 text-sm transition-colors cursor-pointer ${
                     activeSection === section.id
                       ? 'text-blue-700 dark:text-blue-300 border-l-2 border-blue-500 dark:border-blue-400 -ml-px'
                       : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
@@ -143,14 +148,14 @@ export default function ScrollSpyNav({ items }: ScrollSpyNavProps) {
           )}
 
           {item.items && (isExpanded || hasCurrentSubPage) && (
-            <div className="ml-2 mt-1 space-y-0.5">
+            <div className="ml-2 mt-1 space-y-1">
               {item.items.map((subItem, subIndex) => {
                 const isCurrentSubPage = subItem.href === pathname;
                 return (
                   <div key={subIndex}>
                     <Link
                       href={subItem.href}
-                      className={`block py-1 px-2 rounded-md text-xs transition-colors ${
+                      className={`block py-1.5 px-3 rounded-md text-sm transition-colors ${
                         isCurrentSubPage
                           ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300'
                           : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800'
@@ -159,7 +164,7 @@ export default function ScrollSpyNav({ items }: ScrollSpyNavProps) {
                       {subItem.title}
                     </Link>
                     {isCurrentSubPage && subItem.sections && (
-                      <div className="ml-4 mt-1 space-y-0.5 border-l border-gray-200 dark:border-gray-700">
+                      <div className="ml-4 mt-1 space-y-1 border-l border-gray-200 dark:border-gray-700">
                         {subItem.sections.map((section) => (
                           <a
                             key={section.id}
@@ -174,7 +179,7 @@ export default function ScrollSpyNav({ items }: ScrollSpyNavProps) {
                                 });
                               }
                             }}
-                            className={`block pl-3 py-0.5 text-xs transition-colors cursor-pointer ${
+                            className={`block pl-3 py-1 text-sm transition-colors cursor-pointer ${
                               activeSection === section.id
                                 ? 'text-blue-700 dark:text-blue-300 border-l-2 border-blue-500 dark:border-blue-400 -ml-px'
                                 : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'

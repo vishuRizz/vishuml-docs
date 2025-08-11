@@ -290,9 +290,6 @@ export default function DocsLayout({
               </button>
               
               <Link href="/" className="flex items-center ml-4 lg:ml-0">
-                <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-lg">V</span>
-                </div>
                 <span className="ml-2 text-xl font-bold text-gray-900 dark:text-white">VishuML</span>
               </Link>
               
